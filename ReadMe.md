@@ -26,73 +26,107 @@ Este script Python foi desenvolvido para **trabalhar integrado a uma API especí
 
 ---
 
+Claro! Vou organizar e formatar seu texto para README.md, mantendo tudo claro, com blocos de código corretos, títulos e espaçamentos apropriados. Veja como fica:
+
+````md
 ## 📦 Instalação e dependências
 
 No terminal:
 
 ```bash
-pip install requests python-dotenv 
-ou
-pip install requirements.txt
+pip install requests python-dotenv
+# ou
+pip install -r requirements.txt
+````
 
 ---
 
-📁 Configuração dos arquivos
-.env
-Preencha o arquivo .env (na raiz do projeto):
+## 📁 Configuração dos arquivos
 
+### `.env`
+
+Preencha o arquivo `.env` (na raiz do projeto):
+
+```
 API_KEY=sua_key_da_api_aqui
 WTT_API_URL=http://xxx.0.0.1:xxx/xxxx/xxxx/xxxx
 MENSAGENS_PATH=mensagens.json
 NUMEROS_PATH=numeros.json
+```
 
 ---
 
-numeros.json deve ser uma lista de objetos {nome: telefone}:
+### `numeros.json`
 
+Deve ser uma lista de objetos `{nome: telefone}`:
+
+```json
 [
     {"João Silva": "5511999999999"},
     {"Maria Souza": "5511978888888"}
 ]
+```
 
 ---
 
-mensagens.json agora no formato com id e texto:
+### `mensagens.json`
 
+Formato com `id` e `texto`:
+
+```json
 [
     {"id": 1, "texto": "Olá, aproveite nossa oferta."},
     {"id": 2, "texto": "Promoção válida só hoje!"}
 ]
+```
 
+---
 
 ## 🚦 Fluxo básico
 
-O script lê todos os contatos e mensagens.
-Para cada contato, sorteia (ou intercala) uma mensagem, envia via API e loga o resultado.
-Entre cada envio, espera 5 segundos.
-A cada 50 envios, aguarda 2 minutos (antispam).
-Gera saida_envios.json listando cada envio, mensagem e status. (salve esse arquivo se necessitar)
+* O script lê todos os contatos e mensagens.
+* Para cada contato, sorteia (ou intercala) uma mensagem, envia via API e loga o resultado.
+* Entre cada envio, espera 5 segundos.
+* A cada 50 envios, aguarda 2 minutos (antispam).
+* Gera `saida_envios.json` listando cada envio, mensagem e status (salve esse arquivo se necessitar).
 
-🛠️ Adaptando para outra API
+---
+
+## 🛠️ Adaptando para outra API
+
 Se sua infraestrutura usa uma API própria ou diferente, basta modificar o trecho do código abaixo para adequar ao novo endpoint/payload, mantendo toda a lógica de leitura, sorteio e geração de relatório:
 
+```python
 response = requests.request("POST", URL_ENVIO, headers=headers, data=payload)
+```
+
 Adapte:
 
-O endereço da API (URL_ENVIO)
-O header (headers)
-O formato do corpo (payload)
+* O endereço da API (`URL_ENVIO`)
+* O header (`headers`)
+* O formato do corpo (`payload`)
+
 Se precisar de ajuda na adaptação para outra API ou quiser acesso à API do autor, entre em contato conforme instruções deste repositório.
 
-👉 Execução
+---
+
+## 👉 Execução
+
 No terminal:
 
+```bash
 python main.py
+```
+
 Acompanhe os logs no terminal para saber o status de cada envio!
 
-🗂️ Saída
-O arquivo saida_envios.json terá a seguinte estrutura:
+---
 
+## 🗂️ Saída
+
+O arquivo `saida_envios.json` terá a seguinte estrutura:
+
+```json
 [
   {
     "nome": "João Silva",
@@ -102,12 +136,19 @@ O arquivo saida_envios.json terá a seguinte estrutura:
     "status": "enviado"
   }
 ]
+```
 
+---
 
-⚠️ Cuidados e Ética
-Não utilize este script para envio de spam, publicidade abusiva ou qualquer ação ilícita.
-O abuso de automação pode gerar bloqueios do WhatsApp.
-Este projeto é uma ferramenta para automação útil, ética e autorizada.
+## ⚠️ Cuidados e Ética
 
-🧑‍💻 Autor e créditos
+* Não utilize este script para envio de spam, publicidade abusiva ou qualquer ação ilícita.
+* O abuso de automação pode gerar bloqueios do WhatsApp.
+* Este projeto é uma ferramenta para automação útil, ética e autorizada.
+
+---
+
+## 🧑‍💻 Autor e créditos
+
 MysteryXmon - Uso liberado
+
